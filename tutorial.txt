@@ -1,0 +1,284 @@
+================================================================================
+  AnDrOID WEBSITE - TUTORIAL: ADDING A NEW MOLECULE
+================================================================================
+
+  Live site:          https://abhaypotluri1.github.io/android/
+  GitHub repository:  https://github.com/abhaypotluri1/android
+
+THE BIG PICTURE
+  1. A ChemDraw drawing + an image of it             -> the tile picture
+  2. An optimized geometry                           -> Gaussian opt/freq job
+  3. An NBO calculation with orbital "plot files"    -> Gaussian NBO job
+  4. A list of the donor->acceptor interactions      -> For the Website
+  5. A web page + a tile on the website              -> built from the files above
+  Everything you need for the website itself is in the GitHub repository. Your
+  calculations stay in your own folders; only a few output files go onto the site.
+
+--------------------------------------------------------------------------------
+SETUP (once per computer)
+--------------------------------------------------------------------------------
+  1. Software you need
+       - Git          https://git-scm.com  (on Windows this installs "Git Bash";
+                      on a Mac, use the Terminal - git is usually already there)
+       - Python 3     https://www.python.org  (only used to preview the site
+                      locally; on Windows tick "Add python.exe to PATH" when
+                      installing)
+       - A text editor for HTML, e.g. VS Code (https://code.visualstudio.com)
+       - ChemDraw, GaussView, and access to Gaussian on the cluster
+
+  2. Get permission to publish
+       - Make a GitHub account (https://github.com) if you don't have one.
+       - Ask the site owner to add you: on GitHub they open the repository >
+         Settings > Collaborators > Add people > your GitHub username.
+       - Accept the invitation (it arrives by email and on GitHub).
+
+  3. Tell Git who you are (shown on every change you publish). In Git Bash:
+        git config --global user.name "Your Name"
+        git config --global user.email "you@email.com"
+
+  4. Download ("clone") the website. In Git Bash, go to where you want the
+     folder (e.g. your Documents) and run:
+        cd to a folder that you are working in.
+        git clone https://github.com/abhaypotluri1/android.git
+     This makes a folder called "android" containing the whole website:
+        index.html        Home page ("Featured Molecules" tiles)
+        molecules.html    All Molecules page (tiles for every molecule)
+        about.html, methods.html, contact.html
+        molecule_pages\   one .html page per molecule
+                          (+ molecule-example.html, the template for new ones)
+        molecules\<Name>\ the files each page loads (.mol, .31, .36, .46)
+        images\           tile pictures (<Name>.jpg)
+        jsmol\            the 3D viewer library (don't edit)
+        style.css, script.js   look and behaviour of the whole site
+     Below, "the android folder" means this folder.
+
+  5. Check you can preview the site locally (see "PREVIEWING THE SITE" below).
+
+  EVERY TIME YOU START WORKING: get the latest version first, so you don't
+  work on an old copy. In Git Bash:
+        cd ~/Documents/android
+        git pull
+
+--------------------------------------------------------------------------------
+PREVIEWING THE SITE ON YOUR COMPUTER
+--------------------------------------------------------------------------------
+  The 3D viewer (JSmol) only works when the site is served by a web server.
+  Double-clicking an .html file will NOT work (you get "Unexpected identifier
+  'to'" or a viewer that never loads). Use Python's built-in server instead:
+     1. In Git Bash (or a terminal), go to the android folder:
+           cd android
+     2. Start the server:
+           python -m http.server 8000
+        (If "python" is not found, try:  py -m http.server 8000   or
+         python3 -m http.server 8000)
+     3. Open  http://localhost:8000  in your browser.
+     4. Leave the window open while you work; press Ctrl+C in it to stop.
+        After editing a file, refresh the browser with Ctrl+Shift+R
+
+--------------------------------------------------------------------------------
+STEP 0. PICK A NAME (do this first - it is used everywhere)
+--------------------------------------------------------------------------------
+  Choose one name and use it, spelled exactly the same, for EVERY file and folder.
+    - Use letters, numbers and underscores only. No spaces.
+        good:  Benzene    Molecule_6    Norbornene_4
+        bad:   Benzene 2  molecule-6    Norbornene 4
+    - Capital letters matter on the live website: "Benzene.jpg" and
+      "benzene.jpg" are different files there
+    - Check molecule_pages\ that the name isn't already used.
+  Below, <Name> means your chosen name.
+
+--------------------------------------------------------------------------------
+STEP 1. CHOOSE THE MOLECULE AND THE INTERACTIONS TO SHOW
+--------------------------------------------------------------------------------
+  - Pick a molecule that illustrates a donor->acceptor interaction students find
+    hard to visualise (lone pair -> sigma*, sigma -> empty p, pi -> pi*, etc.).
+  - Decide roughly which interactions you want to show. You will pick the exact
+    ones from the NBO output in Step 5, so this can be a rough idea for now.
+  - Check with the group (Dean Tantillo) before adding a molecule from
+    unpublished work - everything on the website is publicly downloadable.
+
+--------------------------------------------------------------------------------
+STEP 2. DRAW IT IN CHEMDRAW AND MAKE THE TILE IMAGE
+--------------------------------------------------------------------------------
+  1. Draw the structure in ChemDraw in the style of the existing tiles.
+     Look at the android folder's images\ for examples.
+  2. Save the drawing:   File > Save As > ChemDraw XML (*.cdxml)  ->  <Name>.cdxml
+  3. Make the image:     File > Save As > JPEG (*.jpg)            ->  <Name>.jpg
+     (white background, cropped tightly around the structure)
+  Keep these with your calculation files; only the .jpg goes on the website.
+
+--------------------------------------------------------------------------------
+STEP 3. OPTIMIZE THE GEOMETRY
+--------------------------------------------------------------------------------
+  Route line:   # opt freq m062x/6-311+g(d,p)
+  Check the output ends with "Normal termination" and has no imaginary
+  (negative) frequencies.
+
+--------------------------------------------------------------------------------
+STEP 4. RUN THE NBO CALCULATION WITH PLOT FILES (Gaussian)
+--------------------------------------------------------------------------------
+  This single-point job produces the orbitals the website draws.
+  1. Open the optimized structure.
+  2. Make an input file <Name>.gjf that looks like this:
+
+        %nprocshared=8
+        %mem=16GB
+        %chk=<Name>.chk
+        # m062x/6-311+g(d,p) pop=(savenbos,nbo7read)
+
+        Title Card Required
+
+        -1 1
+         ... (optimized coordinates) ...
+
+        $NBO PLOT FILE=<Name> $END
+
+     IMPORTANT
+       - Keep the route line exactly as shown (same method/basis and NBO
+         keywords as every other molecule).
+       - Use your molecule's own charge and multiplicity (the "-1 1" line is
+         for acetate; a neutral closed-shell molecule is "0 1").
+       - The $NBO line goes AFTER the coordinates, with a blank line before it,
+         and FILE= must be your exact <Name>. That name becomes the name of the
+         plot files.
+       - Don't reorder atoms after this job: the orbital numbers depend on it.
+  3. When it finishes, check:
+       - "Normal termination" at the end of <Name>.log
+       - These files were produced next to it:
+            <Name>.log   <Name>.chk
+            <Name>.31  <Name>.32 ... <Name>.42  <Name>.46   (NBO plot files)
+         The website needs .31, .36 and .46. Copy them (and <Name>.log) from
+         the cluster to your computer.
+
+--------------------------------------------------------------------------------
+STEP 5. PICK THE INTERACTIONS TO SHOW
+--------------------------------------------------------------------------------
+  1. Open <Name>.log and search for:
+        SECOND ORDER PERTURBATION THEORY ANALYSIS OF FOCK MATRIX IN NBO BASIS
+     Each line is one donor -> acceptor interaction, for example:
+        6. LP ( 2) O  2       18. BD*( 1) C  1- O  3     22.34   0.97  0.131
+        ^ donor NBO number    ^ acceptor NBO number      ^ E(2) energy (kcal/mol)
+  2. Choose the interactions to show
+  3. For each one, write down the donor and acceptor NBO numbers, the two
+     labels (e.g. LP(2) O2 -> BD*(1) C1-O3) and the E(2) energy. You need
+     them in Step 6.
+
+--------------------------------------------------------------------------------
+STEP 6. MAKE THE WEB PAGE (all paths are inside the android folder)
+--------------------------------------------------------------------------------
+  1. Copy the data files into the website:
+        Make the folder  molecules\<Name>\  and put <Name>.31, <Name>.36 and
+        <Name>.46 in it.
+  2. Make the 3D structure file  molecules\<Name>\<Name>.mol  in GaussView:
+        open <Name>.log (the NBO job) > File > Save... > "Save as type":
+        MDL Molfile (*.mol) > save as <Name>.mol.
+        Don't add, delete or reorder atoms before saving - the atom numbers
+        must match the NBO output. Check the double bonds look right.
+  3. Copy the image:  <Name>.jpg  ->  images\<Name>.jpg
+  4. Make the page: copy molecule_pages\molecule-example.html within that
+     folder and rename the copy to <Name>.html. Open it in your text editor.
+     The instructions at the top of the file describe the same steps.
+       a. In the "EDIT FOR EACH MOLECULE" block, replace YOUR_MOLECULE with
+          <Name> in MOLECULE_FILE and NBO_ORBITAL_FILE.
+       b. In ORBITAL_INTERACTIONS, make one line per interaction:
+            { viewer: "nboViewer1", donor: 6, acceptor: 18,
+              donorType: "lp", acceptorType: "sigmastar",
+              flipDonor: false, flipAcceptor: false, view: "", center: 1 },
+          - donor / acceptor = the NBO numbers you noted in Step 5.
+          - donorType / acceptorType, from the NBO labels:
+                LP     -> "lp"          LV         -> "p"
+                BD(1)  -> "sigma"       BD*(1)     -> "sigmastar"
+                BD(2), BD(3), BD*(2), BD*(3)       -> "pi"
+          - center = an atom at the middle of the interaction (atom number).
+          - view = "" keeps the default orientation. Visitors can rotate the
+            molecule themselves, so this does not need to be perfect.
+          - Add  zoom: 150  (for example) to a line to zoom that card in more.
+          - flipAcceptor: leave false for now; you check it in Step 7.
+          - Separate the lines with commas (no comma after the last one).
+       c. Set the <title> and the <h1> heading to the molecule's name.
+       d. Make one orbital card per interaction (copy a whole card block).
+          Each card needs: its own viewer id (nboViewer1, nboViewer2, ...)
+          matching its ORBITAL_INTERACTIONS line, the next resetOrbitalView
+          number (0, 1, 2, ...), the interaction in words, e.g.
+          n(O) -> sigma*(C-O) written as  n(O) → σ*(C–O), and the energy.
+          Cards arrange themselves two per row.
+       Tip: other pages in molecule_pages\ (e.g. Acetate.html) are finished
+       examples you can compare against.
+  5. Add the tile: in molecules.html (and index.html to feature it on the
+     Home page), copy an existing tile block - from <!-- MOLECULE CARD ... -->
+     to its closing </div> - and change the image, name and link to
+     molecule_pages/<Name>.html. Page numbers update automatically.
+
+--------------------------------------------------------------------------------
+STEP 7. CHECK IT IN A BROWSER
+--------------------------------------------------------------------------------
+  Start the local preview (see "PREVIEWING THE SITE" above) and open
+  http://localhost:8000
+  1. Go to All Molecules, find your tile and open the page. Check that:
+       - The main 3D structure appears, with the right atoms and double bonds.
+       - Every orbital card shows two orbitals (donor and acceptor).
+       - Where the donor and acceptor overlap, the touching lobes have the
+         SAME colour (blue with blue, green with green). If a card shows them
+         in different colours, open the page in your text editor and set
+         flipAcceptor: true for that card, then refresh.
+       - The card labels and energies match the NBO log.
+  2. If you changed something and the page still looks old, press Ctrl+Shift+R.
+  3. If a viewer stays blank, check the file names (and capital letters) in
+     molecules\<Name>\ match MOLECULE_FILE / NBO_ORBITAL_FILE in the page.
+     Pressing F12 in the browser shows error messages in the "Console" tab.
+
+--------------------------------------------------------------------------------
+STEP 8. PUBLISH (update the live site on GitHub)
+--------------------------------------------------------------------------------
+  Your android folder is connected to the GitHub repository, and the live site
+  is served by GitHub Pages from it. To publish your changes, upload ("push")
+  them with Git Bash. Do this only after checking the page in Step 7.
+
+  1. Open Git Bash and go to the android folder:
+        cd to the android folder
+
+  2. Get the latest version from GitHub first, in case someone else published
+     changes since you started:
+        git pull
+
+  3. See what changed:
+        git status
+     New files are listed in red as "untracked"; edited files as "modified".
+     For a new molecule you should see, for example:
+        molecule_pages/<Name>.html
+        molecules/<Name>/            (the .mol, .31, .36, .46)
+        images/<Name>.jpg
+        molecules.html  and/or  index.html   (the new tile)
+     If you see files you didn't mean to change, undo them with
+        git restore <file>
+
+  4. Stage all the changes (mark them to be included):
+        git add -A
+
+  5. Save them as a new version with a short description:
+        git commit -m "Add <Name> molecule page"
+
+  6. Upload to GitHub:
+        git push
+     The first time, a window asks you to sign in to GitHub - use the account
+     that was added as a collaborator.
+
+  7. Wait 1-2 minutes, then open https://abhaypotluri1.github.io/android/
+     and check the new page. (Press Ctrl+Shift+R if you still see the old
+     version.) The progress of each update is shown on GitHub under the
+     repository's "Actions" tab.
+
+  Quick version, once you are used to it (run inside the android folder):
+        git pull
+        git add -A
+        git commit -m "Describe the change"
+        git push
+
+
+--------------------------------------------------------------------------------
+WHERE YOUR CALCULATION FILES GO
+--------------------------------------------------------------------------------
+  Only the files listed in Step 6 (.31, .36, .46, .mol, .jpg) go into the
+  android folder. Keep everything else (.gjf, .log, .chk, .cdxml, the other
+  plot files) in your own project folder.
+================================================================================
