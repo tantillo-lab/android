@@ -1,0 +1,3 @@
+# Store every file exactly as it is (no line-ending conversion), so the website files and
+# the orbital data (.31/.36/.46/.mol) are published byte-for-byte identical to this folder.
+* -text

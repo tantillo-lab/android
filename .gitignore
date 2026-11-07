@@ -1,0 +1,16 @@
+# Local-only files: kept on this computer, not published with the website.
+
+# Python environment used to preview the site locally (Start Website.bat)
+.conda/
+
+# Claude Code project settings
+.claude/
+
+# Local preview launcher and developer notes
+Start Website.bat
+README.md
+FOLDER_STRUCTURE.txt
+tutorial.txt
+
+# Python cache folders, if any appear
+__pycache__/

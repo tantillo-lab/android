@@ -1,0 +1,1303 @@
+/* ============================================================================
+   AnDrOID (Animated Donor-Acceptor Orbital Interaction Database)
+   MAIN STYLESHEET
+   
+   This file contains all styling for the website. Each section is commented
+   to explain what it does. Color scheme can be customized by changing the
+   CSS custom properties (variables) at the top.
+   ============================================================================ */
+
+/* ============================================================================
+   1. CSS CUSTOM PROPERTIES (Variables)
+   These define the color scheme and can be easily changed throughout the site.
+   ============================================================================ */
+
+:root {
+    /* Main color palette - customize these to match your design */
+    --primary-color: #0056cc;      /* Main blue for headers, buttons, links */
+    --primary-dark: #003d99;       /* Darker blue for hover states */
+    --secondary-color: #00a36d;    /* Green accent color */
+    --accent-color: #ff6b35;       /* Orange/coral for highlights */
+    
+    /* Text colors */
+    --text-primary: #1a1a1a;       /* Main text color (almost black) */
+    --text-secondary: #666666;     /* Muted text (for subtitles, captions) */
+    --text-light: #999999;         /* Light gray for less important text */
+    
+    /* Background colors */
+    --bg-white: #ffffff;           /* Pure white for main background */
+    --bg-light: #f5f5f5;           /* Light gray for sections/cards */
+    --bg-lighter: #fafafa;         /* Very light gray for alternating rows */
+    
+    /* Border colors */
+    --border-color: #dddddd;       /* Light gray for borders */
+    --border-dark: #cccccc;        /* Darker gray for more prominent borders */
+    
+    /* Typography sizes */
+    --font-size-h1: 2.5rem;        /* Main page title size */
+    --font-size-h2: 2rem;          /* Section heading size */
+    --font-size-h3: 1.5rem;        /* Subsection heading size */
+    --font-size-body: 1.125rem;    /* Regular paragraph text */
+    --font-size-small: 1rem;       /* Small text and captions */
+    
+    /* Spacing units */
+    --spacing-xs: 0.5rem;          /* Extra small gap (8px) */
+    --spacing-sm: 1rem;            /* Small gap (16px) */
+    --spacing-md: 1.5rem;          /* Medium gap (24px) */
+    --spacing-lg: 2rem;            /* Large gap (32px) */
+    --spacing-xl: 3rem;            /* Extra large gap (48px) */
+    
+    /* Other variables */
+    --border-radius: 8px;          /* Rounded corners for buttons, cards */
+    --box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+/* ============================================================================
+   2. GLOBAL STYLES
+   These apply to the entire page and reset browser defaults.
+   ============================================================================ */
+
+/* Reset default margins/padding and apply consistent styling to all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;        /* Include padding/border in element width */
+}
+
+/* Main document styling */
+html {
+    scroll-behavior: smooth;       /* Smooth scrolling for anchor links */
+}
+
+/* Body element - background and text color for entire page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-white);
+    line-height: 1.6;              /* Good line spacing for readability */
+    font-size: var(--font-size-body);
+}
+
+/* Ensure main content takes full available height (for sticky footer) */
+/* min-height (not height) so body grows with long pages; a fixed height made the
+   sticky header scroll away after one screen of scrolling. */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================================
+   3. HEADER STYLES
+   The navigation bar at the top of every page
+   ============================================================================ */
+
+/* Main header container - appears at top of page */
+.main-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--box-shadow);
+    position: sticky;              /* Stays at top when scrolling */
+    top: 0;
+    z-index: 2147483647;           /* Max z-index: header always stays above everything (incl. JSmol) */
+}
+
+/* Inner container for header content */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Logo/site name styling */
+.logo {
+    font-size: 1.85rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    min-width: 150px;              /* Prevent logo from shrinking */
+}
+
+/* Navigation menu styling */
+.main-nav {
+    display: flex;
+    gap: var(--spacing-lg);        /* Space between nav items */
+    flex-wrap: wrap;               /* Allow wrapping on small screens */
+}
+
+/* Individual navigation links */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+    border-bottom: 3px solid transparent; /* Prepare for underline effect */
+}
+
+/* Hover state for navigation links */
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+/* Active link styling - shows which page you're on */
+.nav-link.active {
+    border-bottom: 3px solid white;
+}
+
+/* ============================================================================
+   4. MAIN CONTENT AREA
+   Container for page content between header and footer
+   ============================================================================ */
+
+/* Main content wrapper - pushes footer to bottom */
+.main-content {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* ============================================================================
+   5. TYPOGRAPHY STYLES
+   Headings and text formatting
+   ============================================================================ */
+
+/* Page titles - used at top of each page */
+.page-title {
+    font-size: var(--font-size-h1);
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Section headings - used within pages */
+.section-heading {
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* All heading levels */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+/* Paragraph styling */
+p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+}
+
+/* List styling */
+ul, ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* ============================================================================
+   6. HERO/BANNER SECTION
+   Large title area on homepage
+   ============================================================================ */
+
+/* Hero section - eye-catching banner at top of homepage */
+.hero-section {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Main hero title */
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: var(--spacing-md);
+    color: white;
+    border: none;                  /* Remove underline from section-heading */
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+    font-size: 1.45rem;
+    opacity: 0.95;
+    color: white;
+}
+
+/* ============================================================================
+   7. MOLECULE CARD STYLES
+   Cards that display individual molecules (on Home and All Molecules pages)
+   ============================================================================ */
+
+/* Container for grid of molecule cards */
+.molecules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns on desktop */
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Full-page molecule grid (9 items) */
+.molecules-grid-full {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns for 9-item grid */
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Individual molecule card styling */
+.molecule-card {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: all 0.3s ease;     /* Smooth animation on hover */
+    cursor: pointer;
+    position: relative;            /* Anchor for the whole-card link below */
+}
+
+/* Hover effect for molecule cards */
+.molecule-card:hover {
+    transform: translateY(-5px);   /* Lift card slightly */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: var(--primary-color);
+}
+
+/* Molecule image container */
+.molecule-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+    background-color: var(--bg-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image inside molecule card */
+.molecule-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;           /* Keep aspect ratio */
+}
+
+/* Molecule name text */
+.molecule-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Button to view molecule details */
+.view-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover state for view button (also when hovering anywhere on its card) */
+.view-button:hover,
+.molecule-card:hover .view-button {
+    background-color: var(--primary-dark);
+}
+
+/* Make the whole molecule card clickable: the "View Details" link's click area
+   is stretched to cover its card, so clicking anywhere opens that molecule. */
+.molecule-card .view-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+/* ============================================================================
+   8. PAGINATION STYLES
+   Controls for navigating between pages of molecules
+   ============================================================================ */
+
+/* Pagination section container */
+.pagination-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+/* Pagination buttons (previous/next) */
+.pagination-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover state for pagination buttons */
+.pagination-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Previous on page 1 / Next on the last page */
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    background-color: var(--primary-color);
+}
+
+/* script.js hides the bar when all molecules fit on one page */
+.pagination-section[hidden] {
+    display: none;
+}
+
+/* Container for page number indicators */
+.page-indicators {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Individual page number dot */
+.page-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Hover state for page dots */
+.page-dot:hover {
+    background-color: var(--bg-light);
+}
+
+/* Active page indicator (current page) */
+.page-dot.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ============================================================================
+   9. TWO-COLUMN LAYOUT STYLES
+   Used on About page and Molecule Detail page
+   ============================================================================ */
+
+/* Two-column section container */
+.about-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;  /* Text takes more space than images */
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    align-items: start;
+}
+
+/* Left column with text content */
+.about-text {
+    padding-right: var(--spacing-lg);
+}
+
+/* Paragraphs in about sections */
+.about-paragraph {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: 1.3rem;             /* Larger text to fill the column beside the images */
+    line-height: 1.8;
+}
+
+/* Single-column section (e.g. Readings): heading on top, content below it */
+.readings-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Right column with images */
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Image container with caption */
+.about-image-container {
+    text-align: center;
+}
+
+/* Images in about section */
+.about-image {
+    width: 40%;
+    height: auto;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Image captions */
+figcaption {
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+    font-style: italic;
+}
+
+/* ============================================================================
+   10. METHODS PAGE STYLES
+   Three-column layout for methodology
+   ============================================================================ */
+
+/* Methods section with three columns */
+.methods-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Individual method column */
+.method-column {
+    background-color: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Heading for each method */
+.method-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* Subheading within method */
+.method-subheading {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Text in method sections */
+.method-text {
+    color: var(--text-secondary);
+    font-size: 1.35rem;            /* Larger text to fill the method boxes */
+    line-height: 1.7;
+}
+
+/* Additional methods details section */
+.methods-details {
+    background-color: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+}
+
+/* ============================================================================
+   11. TEAM/CONTACT STYLES
+   Team member cards and contact information
+   ============================================================================ */
+
+/* Team section container */
+.team-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Feedback invitation below the team cards */
+.team-feedback-note {
+    margin-top: var(--spacing-lg);
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* Grid for team member cards */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Individual team member card */
+.team-card {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for team cards */
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Team member photo container */
+.team-photo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto var(--spacing-md);
+    border-radius: 50%;           /* Circular photo */
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    background-color: var(--bg-white);
+}
+
+/* Image in team photo */
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Team member name */
+.team-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Team member role/title */
+.team-role {
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Team member contact info */
+.team-contact {
+    font-size: var(--font-size-small);
+}
+
+.team-contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.team-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Feedback section */
+.feedback-section {
+    background-color: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Section description text */
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Feedback form styling */
+.feedback-form {
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Form group (label + input) */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Form labels */
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+/* Form inputs (text, email) */
+.form-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-body);
+    font-family: inherit;
+}
+
+/* Form textarea */
+.form-textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-body);
+    font-family: inherit;
+    resize: vertical;              /* Allow resizing height only */
+}
+
+/* Hover and focus states for inputs */
+.form-input:hover,
+.form-textarea:hover {
+    border-color: var(--border-dark);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 86, 204, 0.1);
+}
+
+/* Form submit button */
+.form-submit {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+/* External links section */
+.external-links-section {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+/* External link button */
+.external-link-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.external-link-button:hover {
+    background-color: #008c5c;     /* Darker shade of green */
+}
+
+/* ============================================================================
+   12. INDIVIDUAL MOLECULE PAGE STYLES
+   Styles specific to the molecule detail page
+   ============================================================================ */
+
+/* Molecule title section */
+.molecule-title-section {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Molecule page title */
+.molecule-page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    border: none;                  /* Override section-heading border */
+}
+
+/* Molecule subtitle (formula, etc.) */
+.molecule-subtitle {
+    font-size: 1.35rem;
+    color: var(--text-secondary);
+}
+
+/* Main molecule detail section - two column */
+.molecule-detail-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    align-items: stretch;          /* Both columns same height: bottoms line up */
+}
+
+/* Molecule information column */
+.molecule-info {
+    background-color: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Molecule section headings */
+.molecule-section-heading {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* No extra space above the first heading in the panel */
+.molecule-info > .molecule-section-heading:first-child {
+    margin-top: 0;
+}
+
+/* Color code list - two-column grid */
+.color-code-list {
+    background-color: white;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm) var(--spacing-sm);   /* row gap, column gap */
+}
+
+/* Narrow phones: one legend column so the larger labels fit */
+@media (max-width: 560px) {
+    .color-code-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Individual color code item */
+.color-code-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.25rem;
+}
+
+/* Color swatch (small colored square) */
+.color-swatch {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Color swatch variations */
+.color-swatch.carbon { background-color: #909090; }  /* Gray */
+.color-swatch.hydrogen { background-color: #ffffff; border: 1px solid #999; }  /* White */
+.color-swatch.nitrogen { background-color: #3c6ef1; }  /* Blue */
+.color-swatch.oxygen { background-color: #f93f3f; }  /* Red */
+.color-swatch.fluorine { background-color: #90e050; }  /* Light Green */
+.color-swatch.chlorine { background-color: #1ff01f; }  /* Green */
+.color-swatch.boron { background-color: #ffb5b5; }  /* Salmon */
+
+/* Color label text */
+.color-label {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+}
+
+/* Properties list styling */
+.properties-list {
+    list-style: none;
+    margin: 0;                     /* Override global ul margin so it lines up with the legend */
+    background-color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.properties-list li {
+    padding: var(--spacing-xs);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.properties-list li:last-child {
+    border-bottom: none;
+}
+
+/* JSMol viewer section */
+.molecule-viewer-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* JSMol container */
+.jsmol-container {
+    width: 100%;
+    height: 500px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* JSmol gives its canvas z-index ~9000. This keeps those values contained
+       inside the viewer box so they can't stack above the page header. */
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+}
+
+/* Placeholder text in viewer */
+.viewer-placeholder {
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Viewer controls */
+.viewer-controls {
+    flex-grow: 1;                  /* fill to the bottom so both columns end flush */
+    background-color: var(--bg-light);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Control section heading */
+.control-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Individual control button */
+.control-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+/* Two control buttons side by side (e.g. Ball & Stick | Stick) */
+.control-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+}
+
+.control-btn-row .control-btn {
+    margin-bottom: 0;
+}
+
+.control-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.control-btn:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================================
+   13. ORBITAL ANALYSIS STYLES
+   Styles for the NBO orbital interaction cards
+   ============================================================================ */
+
+/* Orbital analysis section */
+.orbital-analysis-section {
+    background-color: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Grid for orbital cards (2x2 layout) */
+.orbital-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+/* Individual orbital card */
+.orbital-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for orbital cards */
+.orbital-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+/* Orbital card title */
+.orbital-card-title {
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Orbital subtitle (MO labels) */
+.orbital-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    font-family: monospace;        /* Monospace for chemical notation */
+}
+
+/* JSMol NBO container within orbital card */
+.jsmol-nbo-container {
+    width: 100%;
+    height: 300px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--spacing-lg) 0;
+    /* Contain JSmol's high canvas z-index so it can't draw over the sticky header */
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+}
+
+/* Orbital cards that hold a live JSmol viewer: taller viewer, tighter spacing around it */
+.orbital-card .jsmol-nbo-container {
+    height: 450px;
+    margin: var(--spacing-sm) 0;
+    background-color: white;
+}
+
+/* NBO notation + stabilization energy under each card title */
+.orbital-nbo-label {
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+.orbital-energy {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Donor/acceptor colour key shown above the orbital cards */
+.orbital-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs) var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+}
+
+.orbital-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.orbital-legend-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Interaction text section */
+.interaction-text {
+    background-color: var(--bg-lighter);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.interaction-text h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.interaction-text p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-small);
+}
+
+.interaction-text ul {
+    margin-left: var(--spacing-lg);
+    margin-bottom: 0;
+}
+
+.interaction-text li {
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+   14. FOOTER STYLES
+   Bottom of every page
+   ============================================================================ */
+
+/* Main footer container */
+.main-footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-top: auto;              /* Push footer to bottom */
+}
+
+/* Footer text */
+.footer-text {
+    font-size: var(--font-size-small);
+    margin: var(--spacing-xs) 0;
+    line-height: 1.6;
+}
+
+/* Footer links */
+.footer-link {
+    color: white;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+    opacity: 0.8;
+}
+
+/* ============================================================================
+   15. RESPONSIVE DESIGN
+   Styles for smaller screens (tablets, phones)
+   ============================================================================ */
+
+/* Tablet screens (max 1024px) */
+@media (max-width: 1024px) {
+    .molecules-grid,
+    .molecules-grid-full {
+        grid-template-columns: repeat(2, 1fr);  /* 2 columns instead of 3 */
+    }
+    
+    .methods-section {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+    
+    .about-section {
+        grid-template-columns: 1fr;  /* Stack vertically */
+    }
+    
+    .molecule-detail-section {
+        grid-template-columns: 1fr;  /* Stack vertically */
+    }
+    
+    .orbital-cards-grid {
+        grid-template-columns: 1fr;  /* Single column */
+    }
+
+    .main-content {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
+
+/* Mobile screens (max 768px) */
+@media (max-width: 768px) {
+    /* Adjust variables for mobile */
+    :root {
+        --font-size-h1: 2rem;
+        --font-size-h2: 1.5rem;
+        --spacing-lg: 1.5rem;
+    }
+    
+    /* Header scrolls with the page on mobile: the stacked menu is too tall to pin */
+    .main-header {
+        position: static;
+    }
+
+    /* Stack header items vertically */
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    /* Navigation wraps */
+    .main-nav {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+    
+    /* Single column layout for grids */
+    .molecules-grid,
+    .molecules-grid-full,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Full width pagination */
+    .pagination-section {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    /* Adjust molecule image height */
+    .molecule-image {
+        height: 150px;
+    }
+    
+    /* Hero text smaller */
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* JSMol viewer smaller on mobile */
+    .jsmol-container,
+    .jsmol-nbo-container,
+    .orbital-card .jsmol-nbo-container {
+        height: 300px;
+    }
+}
+
+/* Small phones (max 480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 0.95rem;
+    }
+    
+    .main-header {
+        padding: var(--spacing-sm);
+    }
+    
+    .main-content {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .pagination-btn,
+    .page-dot {
+        padding: var(--spacing-xs);
+        font-size: 0.9rem;
+    }
+    
+    .page-dot {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ============================================================================
+   16. UTILITY CLASSES
+   Reusable CSS classes for common patterns
+   ============================================================================ */
+
+/* Back link styling */
+.back-link-section {
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.back-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Search box styling */
+.search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--spacing-sm);
+    margin: 0 auto var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-body);
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 86, 204, 0.1);
+}
+
+/* ============================================================================
+   END OF STYLESHEET
+   ============================================================================ */

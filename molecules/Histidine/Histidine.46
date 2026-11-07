@@ -1,0 +1,220 @@
+  AO        296
+  N 1 (s)   N 1 (s)   N 1 (px)  N 1 (py)  N 1 (pz)  N 1 (s)   N 1 (px) 
+  N 1 (py)  N 1 (pz)  N 1 (s)   N 1 (px)  N 1 (py)  N 1 (pz)  N 1 (s)  
+  N 1 (px)  N 1 (py)  N 1 (pz)  N 1 (d5)  N 1 (d2)  N 1 (d3)  N 1 (d4) 
+  N 1 (d1)  H 2 (s)   H 2 (s)   H 2 (s)   H 2 (px)  H 2 (py)  H 2 (pz) 
+  C 3 (s)   C 3 (s)   C 3 (px)  C 3 (py)  C 3 (pz)  C 3 (s)   C 3 (px) 
+  C 3 (py)  C 3 (pz)  C 3 (s)   C 3 (px)  C 3 (py)  C 3 (pz)  C 3 (s)  
+  C 3 (px)  C 3 (py)  C 3 (pz)  C 3 (d5)  C 3 (d2)  C 3 (d3)  C 3 (d4) 
+  C 3 (d1)  H 4 (s)   H 4 (s)   H 4 (s)   H 4 (px)  H 4 (py)  H 4 (pz) 
+  C 5 (s)   C 5 (s)   C 5 (px)  C 5 (py)  C 5 (pz)  C 5 (s)   C 5 (px) 
+  C 5 (py)  C 5 (pz)  C 5 (s)   C 5 (px)  C 5 (py)  C 5 (pz)  C 5 (s)  
+  C 5 (px)  C 5 (py)  C 5 (pz)  C 5 (d5)  C 5 (d2)  C 5 (d3)  C 5 (d4) 
+  C 5 (d1)  C 6 (s)   C 6 (s)   C 6 (px)  C 6 (py)  C 6 (pz)  C 6 (s)  
+  C 6 (px)  C 6 (py)  C 6 (pz)  C 6 (s)   C 6 (px)  C 6 (py)  C 6 (pz) 
+  C 6 (s)   C 6 (px)  C 6 (py)  C 6 (pz)  C 6 (d5)  C 6 (d2)  C 6 (d3) 
+  C 6 (d4)  C 6 (d1)  H 7 (s)   H 7 (s)   H 7 (s)   H 7 (px)  H 7 (py) 
+  H 7 (pz)  O 8 (s)   O 8 (s)   O 8 (px)  O 8 (py)  O 8 (pz)  O 8 (s)  
+  O 8 (px)  O 8 (py)  O 8 (pz)  O 8 (s)   O 8 (px)  O 8 (py)  O 8 (pz) 
+  O 8 (s)   O 8 (px)  O 8 (py)  O 8 (pz)  O 8 (d5)  O 8 (d2)  O 8 (d3) 
+  O 8 (d4)  O 8 (d1)  O 9 (s)   O 9 (s)   O 9 (px)  O 9 (py)  O 9 (pz) 
+  O 9 (s)   O 9 (px)  O 9 (py)  O 9 (pz)  O 9 (s)   O 9 (px)  O 9 (py) 
+  O 9 (pz)  O 9 (s)   O 9 (px)  O 9 (py)  O 9 (pz)  O 9 (d5)  O 9 (d2) 
+  O 9 (d3)  O 9 (d4)  O 9 (d1)  H10 (s)   H10 (s)   H10 (s)   H10 (px) 
+  H10 (py)  H10 (pz)  H11 (s)   H11 (s)   H11 (s)   H11 (px)  H11 (py) 
+  H11 (pz)  C12 (s)   C12 (s)   C12 (px)  C12 (py)  C12 (pz)  C12 (s)  
+  C12 (px)  C12 (py)  C12 (pz)  C12 (s)   C12 (px)  C12 (py)  C12 (pz) 
+  C12 (s)   C12 (px)  C12 (py)  C12 (pz)  C12 (d5)  C12 (d2)  C12 (d3) 
+  C12 (d4)  C12 (d1)  C13 (s)   C13 (s)   C13 (px)  C13 (py)  C13 (pz) 
+  C13 (s)   C13 (px)  C13 (py)  C13 (pz)  C13 (s)   C13 (px)  C13 (py) 
+  C13 (pz)  C13 (s)   C13 (px)  C13 (py)  C13 (pz)  C13 (d5)  C13 (d2) 
+  C13 (d3)  C13 (d4)  C13 (d1)  C14 (s)   C14 (s)   C14 (px)  C14 (py) 
+  C14 (pz)  C14 (s)   C14 (px)  C14 (py)  C14 (pz)  C14 (s)   C14 (px) 
+  C14 (py)  C14 (pz)  C14 (s)   C14 (px)  C14 (py)  C14 (pz)  C14 (d5) 
+  C14 (d2)  C14 (d3)  C14 (d4)  C14 (d1)  H15 (s)   H15 (s)   H15 (s)  
+  H15 (px)  H15 (py)  H15 (pz)  H16 (s)   H16 (s)   H16 (s)   H16 (px) 
+  H16 (py)  H16 (pz)  H17 (s)   H17 (s)   H17 (s)   H17 (px)  H17 (py) 
+  H17 (pz)  N18 (s)   N18 (s)   N18 (px)  N18 (py)  N18 (pz)  N18 (s)  
+  N18 (px)  N18 (py)  N18 (pz)  N18 (s)   N18 (px)  N18 (py)  N18 (pz) 
+  N18 (s)   N18 (px)  N18 (py)  N18 (pz)  N18 (d5)  N18 (d2)  N18 (d3) 
+  N18 (d4)  N18 (d1)  N19 (s)   N19 (s)   N19 (px)  N19 (py)  N19 (pz) 
+  N19 (s)   N19 (px)  N19 (py)  N19 (pz)  N19 (s)   N19 (px)  N19 (py) 
+  N19 (pz)  N19 (s)   N19 (px)  N19 (py)  N19 (pz)  N19 (d5)  N19 (d2) 
+  N19 (d3)  N19 (d4)  N19 (d1)  H20 (s)   H20 (s)   H20 (s)   H20 (px) 
+  H20 (py)  H20 (pz) 
+  NAO       296
+  N 1( 1s ) N 1( 2s ) N 1( 3s ) N 1( 4s ) N 1( 5s ) N 1( 2px) N 1( 3px)
+  N 1( 4px) N 1( 5px) N 1( 2py) N 1( 3py) N 1( 4py) N 1( 5py) N 1( 2pz)
+  N 1( 3pz) N 1( 4pz) N 1( 5pz) N 1( 3d1) N 1( 3d2) N 1( 3d3) N 1( 3d4)
+  N 1( 3d5) H 2( 1s ) H 2( 2s ) H 2( 3s ) H 2( 2px) H 2( 2py) H 2( 2pz)
+  C 3( 1s ) C 3( 2s ) C 3( 3s ) C 3( 4s ) C 3( 5s ) C 3( 2px) C 3( 3px)
+  C 3( 4px) C 3( 5px) C 3( 2py) C 3( 3py) C 3( 4py) C 3( 5py) C 3( 2pz)
+  C 3( 3pz) C 3( 4pz) C 3( 5pz) C 3( 3d1) C 3( 3d2) C 3( 3d3) C 3( 3d4)
+  C 3( 3d5) H 4( 1s ) H 4( 2s ) H 4( 3s ) H 4( 2px) H 4( 2py) H 4( 2pz)
+  C 5( 1s ) C 5( 2s ) C 5( 3s ) C 5( 4s ) C 5( 5s ) C 5( 2px) C 5( 3px)
+  C 5( 4px) C 5( 5px) C 5( 2py) C 5( 3py) C 5( 4py) C 5( 5py) C 5( 2pz)
+  C 5( 3pz) C 5( 4pz) C 5( 5pz) C 5( 3d1) C 5( 3d2) C 5( 3d3) C 5( 3d4)
+  C 5( 3d5) C 6( 1s ) C 6( 2s ) C 6( 3s ) C 6( 5s ) C 6( 4s ) C 6( 2px)
+  C 6( 3px) C 6( 4px) C 6( 5px) C 6( 2py) C 6( 3py) C 6( 4py) C 6( 5py)
+  C 6( 2pz) C 6( 3pz) C 6( 4pz) C 6( 5pz) C 6( 3d1) C 6( 3d2) C 6( 3d3)
+  C 6( 3d4) C 6( 3d5) H 7( 1s ) H 7( 2s ) H 7( 3s ) H 7( 2px) H 7( 2py)
+  H 7( 2pz) O 8( 1s ) O 8( 2s ) O 8( 3s ) O 8( 4s ) O 8( 5s ) O 8( 2px)
+  O 8( 3px) O 8( 4px) O 8( 5px) O 8( 2py) O 8( 3py) O 8( 4py) O 8( 5py)
+  O 8( 2pz) O 8( 3pz) O 8( 4pz) O 8( 5pz) O 8( 3d1) O 8( 3d2) O 8( 3d3)
+  O 8( 3d4) O 8( 3d5) O 9( 1s ) O 9( 2s ) O 9( 4s ) O 9( 3s ) O 9( 5s )
+  O 9( 2px) O 9( 3px) O 9( 4px) O 9( 5px) O 9( 2py) O 9( 3py) O 9( 4py)
+  O 9( 5py) O 9( 2pz) O 9( 3pz) O 9( 4pz) O 9( 5pz) O 9( 3d1) O 9( 3d2)
+  O 9( 3d3) O 9( 3d4) O 9( 3d5) H10( 1s ) H10( 2s ) H10( 3s ) H10( 2px)
+  H10( 2py) H10( 2pz) H11( 1s ) H11( 2s ) H11( 3s ) H11( 2px) H11( 2py)
+  H11( 2pz) C12( 1s ) C12( 2s ) C12( 3s ) C12( 4s ) C12( 5s ) C12( 2px)
+  C12( 3px) C12( 4px) C12( 5px) C12( 2py) C12( 3py) C12( 4py) C12( 5py)
+  C12( 2pz) C12( 3pz) C12( 4pz) C12( 5pz) C12( 3d1) C12( 3d2) C12( 3d3)
+  C12( 3d4) C12( 3d5) C13( 1s ) C13( 2s ) C13( 3s ) C13( 4s ) C13( 5s )
+  C13( 2px) C13( 3px) C13( 4px) C13( 5px) C13( 2py) C13( 3py) C13( 4py)
+  C13( 5py) C13( 2pz) C13( 3pz) C13( 4pz) C13( 5pz) C13( 3d1) C13( 3d2)
+  C13( 3d3) C13( 3d4) C13( 3d5) C14( 1s ) C14( 2s ) C14( 4s ) C14( 5s )
+  C14( 3s ) C14( 2px) C14( 3px) C14( 4px) C14( 5px) C14( 2py) C14( 3py)
+  C14( 4py) C14( 5py) C14( 2pz) C14( 3pz) C14( 4pz) C14( 5pz) C14( 3d1)
+  C14( 3d2) C14( 3d3) C14( 3d4) C14( 3d5) H15( 1s ) H15( 2s ) H15( 3s )
+  H15( 2px) H15( 2py) H15( 2pz) H16( 1s ) H16( 2s ) H16( 3s ) H16( 2px)
+  H16( 2py) H16( 2pz) H17( 1s ) H17( 2s ) H17( 3s ) H17( 2px) H17( 2py)
+  H17( 2pz) N18( 1s ) N18( 2s ) N18( 4s ) N18( 3s ) N18( 5s ) N18( 2px)
+  N18( 4px) N18( 3px) N18( 5px) N18( 2py) N18( 4py) N18( 3py) N18( 5py)
+  N18( 2pz) N18( 4pz) N18( 3pz) N18( 5pz) N18( 3d1) N18( 3d2) N18( 3d3)
+  N18( 3d4) N18( 3d5) N19( 1s ) N19( 2s ) N19( 4s ) N19( 3s ) N19( 5s )
+  N19( 2px) N19( 4px) N19( 3px) N19( 5px) N19( 2py) N19( 4py) N19( 3py)
+  N19( 5py) N19( 2pz) N19( 4pz) N19( 3pz) N19( 5pz) N19( 3d1) N19( 3d2)
+  N19( 3d3) N19( 3d4) N19( 3d5) H20( 1s ) H20( 2s ) H20( 3s ) H20( 2px)
+  H20( 2py) H20( 2pz)
+  NHO       296
+  N 1(cr)   C 3(cr)   C 5(cr)   C 6(cr)   O 8(cr)   O 9(cr)   C12(cr)  
+  C13(cr)   C14(cr)   N18(cr)   N19(cr)   N 1(lp)   O 8(lp)   O 8(lp)  
+  O 9(lp)   O 9(lp)   N18(lp)   N19(lp)   N 1( H 2) H 2( N 1) N 1( C 3)
+  C 3( N 1) N 1( H11) H11( N 1) C 3( H 4) H 4( C 3) C 3( C 5) C 5( C 3)
+  C 3( C 6) C 6( C 3) C 5( H 7) H 7( C 5) C 5( C12) C12( C 5) C 5( H17)
+  H17( C 5) C 6( O 8) O 8( C 6) C 6( O 8) O 8( C 6) C 6( O 9) O 9( C 6)
+  O 9( H10) H10( O 9) C12( C13) C13( C12) C12( C13) C13( C12) C12( N18)
+  N18( C12) C13( H15) H15( C13) C13( N19) N19( C13) C14( H16) H16( C14)
+  C14( N18) N18( C14) C14( N18) N18( C14) C14( N19) N19( C14) N19( H20)
+  H20( N19) N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)  
+  N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)  
+  N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   H 2(ry)   H 2(ry)   H 2(ry)  
+  H 2(ry)   H 2(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)  
+  C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)  
+  C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   H 4(ry)   H 4(ry)  
+  H 4(ry)   H 4(ry)   H 4(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)  
+  C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)  
+  C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   H 7(ry)   H 7(ry)   H 7(ry)   H 7(ry)   H 7(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)  
+  O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)  
+  O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   H10(ry)  
+  H10(ry)   H10(ry)   H10(ry)   H10(ry)   H11(ry)   H11(ry)   H11(ry)  
+  H11(ry)   H11(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)  
+  C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)  
+  C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)  
+  C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)  
+  C14(ry)   C14(ry)   C14(ry)   C14(ry)   H15(ry)   H15(ry)   H15(ry)  
+  H15(ry)   H15(ry)   H16(ry)   H16(ry)   H16(ry)   H16(ry)   H16(ry)  
+  H17(ry)   H17(ry)   H17(ry)   H17(ry)   H17(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)  
+  N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)  
+  N19(ry)   N19(ry)   N19(ry)   N19(ry)   H20(ry)   H20(ry)   H20(ry)  
+  H20(ry)   H20(ry)  
+  NBO       296
+  N 1(cr)   C 3(cr)   C 5(cr)   C 6(cr)   O 8(cr)   O 9(cr)   C12(cr)  
+  C13(cr)   C14(cr)   N18(cr)   N19(cr)   N 1(lp)   O 8(lp)   O 8(lp)  
+  O 9(lp)   O 9(lp)   N18(lp)   N19(lp)   N 1- H 2  N 1- C 3  N 1- H11 
+  C 3- H 4  C 3- C 5  C 3- C 6  C 5- H 7  C 5- C12  C 5- H17  C 6- O 8 
+  C 6- O 8  C 6- O 9  O 9- H10  C12- C13  C12- C13  C12- N18  C13- H15 
+  C13- N19  C14- H16  C14- N18  C14- N18  C14- N19  N19- H20  N 1- H 2*
+  N 1- C 3* N 1- H11* C 3- H 4* C 3- C 5* C 3- C 6* C 5- H 7* C 5- C12*
+  C 5- H17* C 6- O 8* C 6- O 8* C 6- O 9* O 9- H10* C12- C13* C12- C13*
+  C12- N18* C13- H15* C13- N19* C14- H16* C14- N18* C14- N18* C14- N19*
+  N19- H20* N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)  
+  N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)  
+  N 1(ry)   N 1(ry)   N 1(ry)   N 1(ry)   H 2(ry)   H 2(ry)   H 2(ry)  
+  H 2(ry)   H 2(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)  
+  C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)  
+  C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   C 3(ry)   H 4(ry)   H 4(ry)  
+  H 4(ry)   H 4(ry)   H 4(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)  
+  C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)  
+  C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 5(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)   C 6(ry)  
+  C 6(ry)   C 6(ry)   H 7(ry)   H 7(ry)   H 7(ry)   H 7(ry)   H 7(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)   O 8(ry)  
+  O 8(ry)   O 8(ry)   O 8(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)  
+  O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)  
+  O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   O 9(ry)   H10(ry)  
+  H10(ry)   H10(ry)   H10(ry)   H10(ry)   H11(ry)   H11(ry)   H11(ry)  
+  H11(ry)   H11(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)  
+  C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)  
+  C12(ry)   C12(ry)   C12(ry)   C12(ry)   C12(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)   C13(ry)  
+  C13(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)  
+  C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)   C14(ry)  
+  C14(ry)   C14(ry)   C14(ry)   C14(ry)   H15(ry)   H15(ry)   H15(ry)  
+  H15(ry)   H15(ry)   H16(ry)   H16(ry)   H16(ry)   H16(ry)   H16(ry)  
+  H17(ry)   H17(ry)   H17(ry)   H17(ry)   H17(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)   N18(ry)  
+  N18(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)  
+  N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)   N19(ry)  
+  N19(ry)   N19(ry)   N19(ry)   N19(ry)   H20(ry)   H20(ry)   H20(ry)  
+  H20(ry)   H20(ry)  
+ RNBO       296
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                     

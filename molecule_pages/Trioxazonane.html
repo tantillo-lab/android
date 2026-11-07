@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trioxazonane - AnDrOID</title>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- ===== JSMOL LIBRARY (SELF-HOSTED, LOCAL FOLDER) ===== -->
+    <!-- JSmol.min.js already bundles jQuery, so no separate jQuery <script> is needed -->
+    <script type="text/javascript" src="../jsmol/JSmol.min.js"></script>
+
+
+    <!-- JSMol Configuration and Initialization -->
+    <script type="text/javascript">
+    // =================================================================
+    // EDIT FOR EACH MOLECULE
+    // =================================================================
+    // Main 3D structure
+    var MOLECULE_FILE = "../molecules/Trioxazonane/Trioxazonane.mol";
+    // NBO plot file with the pre-orthogonal NBOs (PNBOs). JSmol also reads the matching
+    // .31 (basis set, required) and .46 (orbital labels, optional) from the same folder automatically.
+    var NBO_ORBITAL_FILE = "../molecules/Trioxazonane/Trioxazonane.36";
+
+    // One entry per orbital card. donor/acceptor = NBO numbers from the log's E(2) table.
+    // view = Jmol commands that orient the molecule, applied after "reset" (the default view)
+    //        (e.g. "" to keep the default, "rotate z 90;" to turn in-plane, "rotate x -40;" to tilt;
+    //        "rotate molecular {atomno=A} {atomno=B} 120;" turns about the axis through atoms A and B).
+    // center = atom the view is centred on (usually an atom at the heart of the interaction).
+    var ORBITAL_INTERACTIONS = [
+        { viewer: "nboViewer1", donor: 12, acceptor: 44, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {-0.5141 -0.5783 -0.6335} 151.31;", center: 1, zoom: 127 },
+        { viewer: "nboViewer2", donor: 12, acceptor: 57, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: false, view: "moveto 0 {0.5595 -0.5625 -0.6087} 67.65;", center: 12, zoom: 131 },
+        { viewer: "nboViewer3", donor: 13, acceptor: 43, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {0.7780 -0.4493 0.4392} 113.11;", center: 1, zoom: 127 },
+        { viewer: "nboViewer4", donor: 13, acceptor: 49, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: false, view: "moveto 0 {-0.2743 -0.4027 0.8732} 138.37;", center: 6, zoom: 155 },
+        { viewer: "nboViewer5", donor: 15, acceptor: 54, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: false, view: "moveto 0 {0.5042 0.7883 -0.3527} 180.00;", center: 10, zoom: 149 },
+        { viewer: "nboViewer6", donor: 15, acceptor: 58, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {0.5215 -0.8447 -0.1208} 149.32;", center: 15, zoom: 151 },
+        { viewer: "nboViewer7", donor: 15, acceptor: 59, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {-0.0001 -0.6482 0.7615} 76.93;", center: 15, zoom: 155 },
+        { viewer: "nboViewer8", donor: 17, acceptor: 54, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {-0.7909 0.2806 -0.5438} 38.31;", center: 21, zoom: 128 },
+        { viewer: "nboViewer9", donor: 17, acceptor: 63, donorType: "lp", acceptorType: "sigmastar", flipDonor: false, flipAcceptor: true, view: "moveto 0 {0.5321 0.4820 -0.6961} 66.01;", center: 21, zoom: 132 }
+    ];
+    // =================================================================
+
+    // Orbital colours: [positive phase] [negative phase]
+    // Orbital phase colours, shared by donor and acceptor so that where two lobes overlap,
+    // matching colours = in-phase (constructive) overlap.
+    // The overall sign of an orbital is arbitrary, so if the overlapping lobes come out in
+    // different colours, add  flipDonor: true  or  flipAcceptor: true  to that interaction
+    // in ORBITAL_INTERACTIONS to swap blue/green for that orbital.
+    var PHASE_COLOR_1 = "[x2f6fdf]";  // blue
+    var PHASE_COLOR_2 = "[x2ca02c]";  // green
+    function phaseColors(flip) {
+        return flip ? PHASE_COLOR_2 + " " + PHASE_COLOR_1 : PHASE_COLOR_1 + " " + PHASE_COLOR_2;
+    }
+    var ORBITAL_ZOOM = 115;                       // zoom level for the orbital cards (100 = fit molecule)
+    // Orbital surface isovalue by orbital type (smaller = larger lobes; JSmol default is 0.05).
+    // In ORBITAL_INTERACTIONS, set donorType / acceptorType from the NBO notation:
+    //   "sigma" = BD(1)    "sigmastar" = BD*(1)    "pi" = BD(2)/BD(3) or BD*(2)/BD*(3)
+    //   "lp"    = LP (lone pair)        "p"  = LV (empty p orbital)
+    var ISOVALUE_BY_TYPE = { sigma: 0.03, sigmastar: 0.05, pi: 0.05, lp: 0.05, p: 0.05 };
+    function isovalueFor(type) {
+        return ISOVALUE_BY_TYPE[type] || 0.05;
+    }
+
+    // Template mode: placeholder file names -> don't try to load anything
+    var IS_TEMPLATE = MOLECULE_FILE.indexOf("YOUR_MOLECULE") >= 0;
+
+    // Global variables
+    var jmolApplet0 = "jmolApplet0";
+    var jmolInfo;
+    var jmolInitAttempts = 0;
+    var maxJmolAttempts = 50; // Try for up to 5 seconds (50 * 100ms)
+    var initialMoleculeScript = "load " + MOLECULE_FILE + "; select all; color cpk; wireframe 0.15; spacefill 23%; zoom 100; center;";
+
+    // Jmol commands that set an orbital card's view
+    // (an interaction can set its own zoom; otherwise ORBITAL_ZOOM is used)
+    function orbitalView(it) {
+        return 'reset; ' + it.view + ' center {atomno=' + (it.center || 1) + '}; zoom ' + (it.zoom || ORBITAL_ZOOM) + ';';
+    }
+
+    // Jmol script that draws one donor -> acceptor pair
+    function orbitalScript(it) {
+        return 'load "' + NBO_ORBITAL_FILE + '"; wireframe 0.12; spacefill 18%; ' +
+               'isosurface donor cutoff ' + isovalueFor(it.donorType) + ' color ' + phaseColors(it.flipDonor) + ' mo ' + it.donor + ' translucent 0.45; ' +
+               'isosurface acceptor cutoff ' + isovalueFor(it.acceptorType) + ' color ' + phaseColors(it.flipAcceptor) + ' mo ' + it.acceptor + ' translucent 0.45; ' +
+               orbitalView(it);
+    }
+
+    // Callback function when the main JSMol viewer is ready
+    // jmolInfo.script does not reliably auto-run on startup in this JSmol build,
+    // so the initial load is triggered explicitly here instead.
+    jmol_isReady = function(jmolApplet) {
+        console.log('✅ JSMol viewer is ready!');
+        var elem = document.getElementById("JSmol_loading_msg");
+        if (elem) {
+            elem.style.display = "none"; // fully remove it so it leaves no gap above the viewer
+        }
+        if (!IS_TEMPLATE) Jmol.scriptWait(jmolApplet0, initialMoleculeScript);
+    }
+
+    // Configure JSMol (main viewer)
+    jmolInfo = {
+        width: "100%",
+        height: "100%", // fill .jsmol-container; its height is set in style.css (500px desktop, 300px mobile)
+        debug: false,
+        color: "white",
+        addSelectionOptions: false,
+        use: "HTML5",
+        deferApplet: false,
+        deferUncover: false,
+        j2sPath: "../jsmol/j2s",
+        disableInitialConsole: true,
+        readyFunction: jmol_isReady
+    };
+
+    // Function to wait for Jmol to be defined
+    function waitForJmol() {
+        jmolInitAttempts++;
+
+        if (typeof Jmol !== 'undefined' && Jmol !== null) {
+            createJmolApplet();
+            createOrbitalViewers();
+            return;
+        }
+
+        if (jmolInitAttempts < maxJmolAttempts) {
+            setTimeout(waitForJmol, 100);
+            return;
+        }
+
+        console.error('❌ ERROR: JSMol library not loaded after waiting!');
+        showJmolError('JSMol library failed to load.<br>' +
+            'Most common cause: opening this file directly (file://) instead of via a local web server.<br>' +
+            'Double-click <strong>Start Website.bat</strong> in the Website folder, then use the browser tab it opens.');
+    }
+
+    // Function to create the main applet
+    function createJmolApplet() {
+        // JSmol loads its engine (jsmol/j2s/...) with XMLHttpRequest, which browsers
+        // block for pages opened directly from disk (file://). Explain instead of
+        // letting JSmol show a cryptic "Unexpected identifier 'to'" popup.
+        if (window.location.protocol === 'file:') {
+            console.error('❌ Page opened via file:// - JSmol needs to be served over http://');
+            showJmolError('This page was opened directly from disk (file://), and browsers ' +
+                'block JSmol from loading its files that way.<br><br>' +
+                'Double-click <strong>Start Website.bat</strong> in the Website folder, ' +
+                'then use the browser tab it opens.');
+            return;
+        }
+        if (IS_TEMPLATE) {
+            var elem = document.getElementById("JSmol_loading_msg");
+            if (elem) elem.style.display = "none";
+            $("#jsmol-viewer").html('<p class="viewer-placeholder">3D structure coming soon</p>');
+            return;
+        }
+        try {
+            var html = Jmol.getAppletHtml(jmolApplet0, jmolInfo);
+            if (!html) {
+                showJmolError('Failed to create JSMol applet');
+                return;
+            }
+            $("#jsmol-viewer").html(html);
+        } catch(e) {
+            console.error('❌ Error creating JSMol applet:', e);
+            showJmolError('Error: ' + e.message);
+        }
+    }
+
+    // Create one JSmol viewer per orbital card
+    function createOrbitalViewers() {
+        if (window.location.protocol === 'file:') return;
+        ORBITAL_INTERACTIONS.forEach(function(it) {
+            if (IS_TEMPLATE) {
+                $("#" + it.viewer).html('<p class="viewer-placeholder">Orbital visualization coming soon</p>');
+                return;
+            }
+            var info = {
+                width: "100%",
+                height: "100%",
+                color: "white",
+                use: "HTML5",
+                j2sPath: "../jsmol/j2s",
+                disableInitialConsole: true,
+                addSelectionOptions: false,
+                readyFunction: function(applet) {
+                    Jmol.script(applet, orbitalScript(it));
+                }
+            };
+            try {
+                $("#" + it.viewer).html(Jmol.getAppletHtml(it.viewer + "Applet", info));
+            } catch(e) {
+                console.error('❌ Error creating orbital viewer ' + it.viewer + ':', e);
+            }
+        });
+    }
+
+    // Reset an orbital card's view (button under each card)
+    function resetOrbitalView(index) {
+        var it = ORBITAL_INTERACTIONS[index];
+        var applet = window[it.viewer + "Applet"];
+        if (applet) Jmol.script(applet, orbitalView(it));
+    }
+
+    // Function to show error message to user
+    function showJmolError(message) {
+        var elem = document.getElementById("JSmol_loading_msg");
+        if (elem) {
+            elem.innerHTML = '<p style="color: #d32f2f; padding: 20px; font-size: 14px;">' +
+                '<strong>⚠️ JSMol Loading Error</strong><br>' +
+                message + '<br><br>' +
+                '<strong>Debug Info:</strong><br>' +
+                'Open browser console (F12) for more details.' +
+                '</p>';
+        }
+    }
+
+    // Start waiting for Jmol when document is ready
+    $(document).ready(function(){
+        waitForJmol();
+    });
+    </script>
+</head>
+<body>
+    <!-- HEADER SECTION - Identical to other pages -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo/Site name on the left -->
+            <a href="../index.html" class="logo">AnDrOID</a>
+
+            <!-- Navigation menu - links to all main pages -->
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../methods.html" class="nav-link">Methods</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+                <a href="../molecules.html" class="nav-link">All Molecules</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+        <!-- MOLECULE TITLE SECTION -->
+        <section class="molecule-title-section">
+            <h1 class="molecule-page-title">Trioxazonane</h1>
+        </section>
+
+        <!-- TWO-COLUMN LAYOUT: Information on left, molecule viewer on right -->
+        <section class="molecule-detail-section">
+
+            <!-- LEFT COLUMN: Molecule Information and Properties -->
+            <div class="molecule-info">
+
+                <!-- ATOM COLOR CODING -->
+                <h2 class="molecule-section-heading">Atom Color Code</h2>
+                <div class="color-code-list">
+                    <div class="color-code-item">
+                        <span class="color-swatch carbon"></span>
+                        <span class="color-label">Carbon (C) - Gray</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch hydrogen"></span>
+                        <span class="color-label">Hydrogen (H) - White</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch oxygen"></span>
+                        <span class="color-label">Oxygen (O) - Red</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch nitrogen"></span>
+                        <span class="color-label">Nitrogen (N) - Blue</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch fluorine"></span>
+                        <span class="color-label">Fluorine (F) - Light Green</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch chlorine"></span>
+                        <span class="color-label">Chlorine (Cl) - Green</span>
+                    </div>
+                    <div class="color-code-item">
+                        <span class="color-swatch boron"></span>
+                        <span class="color-label">Boron (B) - Salmon</span>
+                    </div>
+                </div>
+
+                <!-- COMPUTATIONAL DETAILS -->
+                <h2 class="molecule-section-heading">Computational Details</h2>
+                <ul class="properties-list">
+                    <li><strong>Level of Theory:</strong> M06-2X/6-311+G(d,p)</li>
+                    <li><strong>Software:</strong> Gaussian 16</li>
+                    <li><strong>NBO Version:</strong> NBO 7.0</li>
+                </ul>
+
+            </div>
+            <!-- End of left column -->
+
+            <!-- RIGHT COLUMN: Molecule Viewer -->
+            <div class="molecule-viewer-section">
+
+                <!-- JSMOL VIEWER CONTAINER -->
+                <div id="JSmol_loading_msg">
+                    <p class="viewer-placeholder">⏳ Loading 3D molecule viewer...<br>
+                    (Please wait - JSMol is initializing)</p>
+                </div>
+
+                <div id="jsmol-viewer" class="jsmol-container">
+                    <!-- JSMol applet will be created here by JavaScript -->
+                </div>
+                <!-- End of JSMol container -->
+
+                <!-- VIEWER CONTROLS -->
+                <div class="viewer-controls">
+                    <h3 class="control-heading">Display Options</h3>
+
+                    <!-- Display style buttons -->
+                    <div class="control-btn-row">
+                        <button class="control-btn" onclick="if(typeof Jmol !== 'undefined') Jmol.script(jmolApplet0, 'select all; wireframe 0.15; spacefill 23%;')">Ball & Stick</button>
+                        <button class="control-btn" onclick="if(typeof Jmol !== 'undefined') Jmol.script(jmolApplet0, 'select all; wireframe 0.15; spacefill off;')">Stick</button>
+                    </div>
+
+                    <!-- Reset view -->
+                    <button class="control-btn" onclick="if(typeof Jmol !== 'undefined') Jmol.script(jmolApplet0, 'spin off; zoom 100; center;')">Reset View</button>
+                </div>
+
+            </div>
+            <!-- End of right column -->
+
+        </section>
+        <!-- End of two-column detail section -->
+
+        <!-- ORBITAL INTERACTION ANALYSIS SECTION -->
+        <section class="orbital-analysis-section">
+            <h2 class="section-heading">Natural Bond Orbital (NBO) Analysis</h2>
+
+            <!-- Colour key for the orbital viewers (matches PHASE_COLOR_1 / PHASE_COLOR_2 above) -->
+            <div class="orbital-legend">
+                <span class="orbital-legend-item">
+                    <span class="orbital-legend-swatch" style="background:#2f6fdf"></span>
+                    <span class="orbital-legend-swatch" style="background:#2ca02c"></span>
+                    Orbital phase (donor and acceptor NBOs)
+                </span>
+            </div>
+
+            <!-- ORBITAL CARDS GRID - one card per donor -> acceptor interaction, two per row.
+                 To add an interaction: copy a whole card, give it the next viewer id (nboViewer3, ...),
+                 the next resetOrbitalView number (2, 3, ...), and add a matching ORBITAL_INTERACTIONS entry. -->
+            <div class="orbital-cards-grid">
+
+                <!-- ORBITAL CARD #1 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 1</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–N)</p>
+                    <p class="orbital-energy">13.31 kcal/mol</p>
+                    <div id="nboViewer1" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(0)">Reset View</button>
+                </div>
+                <!-- End of orbital card 1 -->
+
+                <!-- ORBITAL CARD #2 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 2</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–H)</p>
+                    <p class="orbital-energy">8.27 kcal/mol</p>
+                    <div id="nboViewer2" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(1)">Reset View</button>
+                </div>
+                <!-- End of orbital card 2 -->
+
+                <!-- ORBITAL CARD #3 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 3</h3>
+                    <p class="orbital-subtitle">n(N) → σ*(C–O)</p>
+                    <p class="orbital-energy">13.40 kcal/mol</p>
+                    <div id="nboViewer3" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(2)">Reset View</button>
+                </div>
+                <!-- End of orbital card 3 -->
+
+                <!-- ORBITAL CARD #4 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 4</h3>
+                    <p class="orbital-subtitle">n(N) → σ*(C–H)</p>
+                    <p class="orbital-energy">7.00 kcal/mol</p>
+                    <div id="nboViewer4" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(3)">Reset View</button>
+                </div>
+                <!-- End of orbital card 4 -->
+
+                <!-- ORBITAL CARD #5 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 5</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–C)</p>
+                    <p class="orbital-energy">7.35 kcal/mol</p>
+                    <div id="nboViewer5" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(4)">Reset View</button>
+                </div>
+                <!-- End of orbital card 5 -->
+
+                <!-- ORBITAL CARD #6 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 6</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–C)</p>
+                    <p class="orbital-energy">7.18 kcal/mol</p>
+                    <div id="nboViewer6" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(5)">Reset View</button>
+                </div>
+                <!-- End of orbital card 6 -->
+
+                <!-- ORBITAL CARD #7 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 7</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–H)</p>
+                    <p class="orbital-energy">7.14 kcal/mol</p>
+                    <div id="nboViewer7" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(6)">Reset View</button>
+                </div>
+                <!-- End of orbital card 7 -->
+
+                <!-- ORBITAL CARD #8 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 8</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–C)</p>
+                    <p class="orbital-energy">5.82 kcal/mol</p>
+                    <div id="nboViewer8" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(7)">Reset View</button>
+                </div>
+                <!-- End of orbital card 8 -->
+
+                <!-- ORBITAL CARD #9 -->
+                <div class="orbital-card">
+                    <h3 class="orbital-card-title">Orbital Interaction 9</h3>
+                    <p class="orbital-subtitle">n(O) → σ*(C–H)</p>
+                    <p class="orbital-energy">5.88 kcal/mol</p>
+                    <div id="nboViewer9" class="jsmol-nbo-container">
+                        <p class="viewer-placeholder">Loading orbitals...</p>
+                    </div>
+                    <button class="control-btn" onclick="resetOrbitalView(8)">Reset View</button>
+                </div>
+                <!-- End of orbital card 9 -->
+
+
+            </div>
+            <!-- End of orbital cards grid -->
+
+        </section>
+        <!-- End of orbital analysis section -->
+
+        <!-- BACK TO MOLECULES LINK -->
+        <section class="back-link-section">
+            <a href="../molecules.html" class="back-link">← Back to All Molecules</a>
+        </section>
+
+    </main>
+    <!-- End of main content -->
+
+    <!-- FOOTER SECTION - Identical to other pages -->
+    <footer class="main-footer">
+        <!-- Acknowledgments -->
+        <p class="footer-text">We gratefully acknowledge the support from <strong>___________</strong></p>
+        <!-- Link to research group page -->
+        <p class="footer-text">Visit our Group page: <a href="http://blueline.ucdavis.edu/" class="footer-link">Tantillo Group</a></p>
+    </footer>
+
+</body>
+</html>
