@@ -1,5 +1,5 @@
 /* ============================================================================
-   AnDrOID (Animated Donor-Acceptor Orbital Interaction Database)
+   AnDrOID (Animated Donor-Acceptor Orbital Interaction Databank)
    MAIN JAVASCRIPT FILE
    
    This file handles:
@@ -140,7 +140,7 @@ function searchMolecules(searchTerm) {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('========================================');
-    console.log('AnDrOID Database - Page Initialization');
+    console.log('AnDrOID Databank - Page Initialization');
     console.log('========================================');
     
     // Initialize pagination display (homepage only)
