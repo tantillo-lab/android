@@ -2,8 +2,8 @@
   AnDrOID WEBSITE - TUTORIAL: ADDING A NEW MOLECULE
 ================================================================================
 
-  Live site:          https://abhaypotluri1.github.io/android/
-  GitHub repository:  https://github.com/abhaypotluri1/android
+  Live site:          https://tantillo-lab.github.io/android/
+  GitHub repository:  https://github.com/tantillo-lab/android
 
 THE BIG PICTURE
   1. A ChemDraw drawing + an image of it             -> the tile picture
@@ -39,7 +39,7 @@ SETUP (once per computer)
   4. Download ("clone") the website. In Git Bash, go to where you want the
      folder (e.g. your Documents) and run:
         cd to a folder that you are working in.
-        git clone https://github.com/abhaypotluri1/android.git
+        git clone https://github.com/tantillo-lab/android.git
      This makes a folder called "android" containing the whole website:
         index.html        Home page ("Featured Molecules" tiles)
         molecules.html    All Molecules page (tiles for every molecule)
@@ -263,7 +263,7 @@ STEP 8. PUBLISH (update the live site on GitHub)
      The first time, a window asks you to sign in to GitHub - use the account
      that was added as a collaborator.
 
-  7. Wait 1-2 minutes, then open https://abhaypotluri1.github.io/android/
+  7. Wait 1-2 minutes, then open https://tantillo-lab.github.io/android/
      and check the new page. (Press Ctrl+Shift+R if you still see the old
      version.) The progress of each update is shown on GitHub under the
      repository's "Actions" tab.
